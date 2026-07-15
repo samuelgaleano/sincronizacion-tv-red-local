@@ -1,0 +1,7 @@
+node_modules/
+*.log
+# Imágenes subidas en operación (no versionadas; conserva la estructura)
+uploads/**/*
+!uploads/**/.gitkeep
+# Config de pantallas: en tu servidor guarda IPs/MAC/tokens reales de los TV
+# (aquí se versiona con valores vacíos como plantilla)

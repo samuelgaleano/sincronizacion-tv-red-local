@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Centro de control · Senalizacion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-id">
+      <span class="eyebrow">SENALIZACION / RED LOCAL</span>
+      <h1>Centro de control</h1>
+    </div>
+    <div class="topbar-summary" id="globalStatus">
+      <div class="status-chip" id="chipOnline">
+        <span class="dot dot-green"></span>
+        <span><strong id="countOnline">0</strong>/3 pantallas en linea</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid" id="screensGrid">
+    <!-- Las tarjetas de pantalla se generan con app.js -->
+  </main>
+
+  <template id="screenCardTemplate">
+    <section class="card" data-screen-id="">
+      <div class="card-header">
+        <div class="card-header-left">
+          <span class="screen-tag">PANTALLA <span class="screen-num"></span></span>
+          <div class="status-pill offline">
+            <span class="dot"></span>
+            <span class="status-text">sin conexion</span>
+          </div>
+        </div>
+        <button class="icon-btn settings-btn" title="Configurar pantalla" aria-label="Configurar pantalla">⚙</button>
+      </div>
+
+      <input class="screen-name-input" type="text" maxlength="40" />
+
+      <div class="settings-panel hidden">
+        <label class="field">
+          <span>Segundos por imagen</span>
+          <input type="number" class="interval-input" min="2" max="300" step="1" />
+        </label>
+        <button class="btn btn-primary save-settings-btn">Guardar</button>
+      </div>
+
+      <div class="tv-panel">
+        <div class="tv-panel-header">
+          <span class="screen-tag">CONTROL DEL TV</span>
+          <span class="tv-paired-pill hidden">EMPAREJADO</span>
+        </div>
+        <div class="tv-fields">
+          <label class="field grow">
+            <span>IP del TV</span>
+            <input type="text" class="tv-ip-input" placeholder="192.168.1.51" />
+          </label>
+          <label class="field grow">
+            <span>MAC del TV</span>
+            <input type="text" class="tv-mac-input" placeholder="AA:BB:CC:DD:EE:FF" />
+          </label>
+          <button class="btn btn-secondary tv-save-btn">Guardar</button>
+        </div>
+        <div class="tv-actions">
+          <button class="btn btn-secondary tv-wake-btn">Encender TV</button>
+          <button class="btn btn-primary tv-open-btn">Abrir navegador</button>
+          <button class="btn btn-danger tv-power-off-btn">Apagar TV</button>
+        </div>
+        <p class="hint tv-status-text"></p>
+        <button class="link-btn tv-list-apps-btn">Diagnostico: ver lista de apps del TV</button>
+        <button class="link-btn tv-forget-btn">Olvidar emparejamiento</button>
+        <pre class="tv-apps-result hidden"></pre>
+      </div>
+
+      <div class="dropzone">
+        <input type="file" class="file-input" accept="image/png, image/jpeg, image/webp, image/gif" multiple hidden />
+        <div class="dropzone-inner">
+          <span class="dropzone-icon">+</span>
+          <span class="dropzone-text">Arrastra imagenes aqui o haz clic para subir</span>
+        </div>
+      </div>
+
+      <p class="hint">Url para el navegador del TV: <code class="display-url"></code></p>
+
+      <div class="image-grid"></div>
+      <p class="empty-hint hidden">Aun no hay imagenes en esta pantalla.</p>
+    </section>
+  </template>
+
+  <template id="thumbTemplate">
+    <figure class="thumb" draggable="true">
+      <img class="thumb-img" src="" alt="" />
+      <button class="thumb-delete" title="Eliminar" aria-label="Eliminar imagen">✕</button>
+      <span class="thumb-current-badge hidden">EN PANTALLA</span>
+    </figure>
+  </template>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/admin/app.js"></script>
+</body>
+</html>

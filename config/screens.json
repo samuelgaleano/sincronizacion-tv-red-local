@@ -1,0 +1,20 @@
+{
+  "1": {
+    "name": "Pantalla 1",
+    "interval": 8,
+    "order": [],
+    "tv": { "ip": "", "mac": "", "token": null }
+  },
+  "2": {
+    "name": "Pantalla 2",
+    "interval": 8,
+    "order": [],
+    "tv": { "ip": "", "mac": "", "token": null }
+  },
+  "3": {
+    "name": "Pantalla 3",
+    "interval": 8,
+    "order": [],
+    "tv": { "ip": "", "mac": "", "token": null }
+  }
+}
