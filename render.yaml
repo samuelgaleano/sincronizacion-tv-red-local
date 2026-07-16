@@ -1,16 +1,9 @@
-# Despliegue en Render (Blueprint). Es una app Node simple (Express + Socket.io)
-# sin dependencias de sistema, así que corre en el runtime nativo de Node — no hace
-# falta Docker. El control físico de los TV (Wake-on-LAN / Samsung) no alcanza a
-# ningún televisor desde la nube, pero el panel, la carga de imágenes y la
-# sincronización por WebSockets funcionan: suficiente para la demo.
+# Despliegue en Render con Docker (mismo enfoque que el POS). App Node simple;
+# el contenedor la corre reproduciblemente. Plan free: la demo "duerme" tras 15 min
+# de inactividad y despierta en segundos — suficiente para una demo.
 services:
   - type: web
     name: sincronizacion-tv-demo
-    runtime: node
+    runtime: docker
     plan: free
-    buildCommand: npm install
-    startCommand: node server.js
     healthCheckPath: /healthz
-    envVars:
-      - key: NODE_VERSION
-        value: "20"
