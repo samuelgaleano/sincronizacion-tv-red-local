@@ -114,6 +114,8 @@ function broadcastScreenUpdate(id) {
 
 // ---------- Middlewares ----------
 app.use(express.json());
+// Health check para el proveedor de hosting (Render): responde 200 sin tocar estado.
+app.get('/healthz', (_req, res) => res.status(200).json({ ok: true }));
 app.use('/images', express.static(UPLOADS_DIR));
 app.use('/admin', express.static(path.join(__dirname, 'public', 'admin')));
 app.use(express.static(path.join(__dirname, 'public')));
