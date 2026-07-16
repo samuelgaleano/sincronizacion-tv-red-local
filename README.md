@@ -4,6 +4,12 @@ Convierte tu PC en un servidor de "carteleras digitales" que envía imágenes a 
 Samsung conectados a tu mismo WiFi, usando el navegador que ya viene integrado en
 el Smart TV. No necesitas instalar nada en los TVs.
 
+## 🚀 Desplegar la demo en línea (Render)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/samuelgaleano/sincronizacion-tv-red-local)
+
+Servicio **Node + Express + Socket.io** dockerizado (ver `render.yaml` y `Dockerfile`), con health check en `/healthz`. Plan free de Render. El panel de administración queda en `…/admin/`.
+
 ## 1. Requisitos
 
 - Node.js 18 o superior instalado en el PC (https://nodejs.org)
